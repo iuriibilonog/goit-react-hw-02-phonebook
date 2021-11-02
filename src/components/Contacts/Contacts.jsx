@@ -1,11 +1,13 @@
-const Contacts = ({ contactsArr }) => {
-  console.log(contactsArr)
+import s from './Contacts.module.css';
+
+const Contacts = ({ contactsArr, deleteContact }) => {
+
   return (
-    <ul>
-      {contactsArr.map(contact => 
-        <li key={contact.id}>
-         <p> {contact.name} : {contact.number}</p>
-        <button type="button">Del</button>
+    <ul className={s.contactsList}>
+      {contactsArr.map(({ name, number, id}) =>
+        <li key={id} className={s.contactItem}>
+          <p className={s.contactsName}> {name}</p> : <p className={s.contactsNumber}>{number}</p>
+          <button className={s.delBtn} onClick={()=> deleteContact(id)} type="button">Delete</button>
         </li>)
       
       }

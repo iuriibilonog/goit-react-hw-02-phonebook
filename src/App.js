@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import s from "./App.module.css";
 import { v4 } from "uuid";
-import "./App.css";
+import "./App.module.css";
 import ContactsForm from "./components/ContactsForm";
 import Contacts from "./components/Contacts";
 import FilterField from "./components/FilterField";
@@ -22,9 +23,14 @@ class App extends Component {
       name: name,
       number: number,
     };
-    this.setState((prevState) => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+
+    const contactsNames = this.state.contacts.map((item) => item.name);
+
+    contactsNames.includes(contact.name)
+      ? alert(`${contact.name} is already in contacts.`)
+      : this.setState((prevState) => ({
+          contacts: [contact, ...prevState.contacts],
+        }));
   };
 
   changeFilter = (e) => {
@@ -39,15 +45,26 @@ class App extends Component {
     );
   };
 
+  deleteContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
+    }));
+  };
+
   render() {
     const filteredContacts = this.getFilteredContacts();
     return (
-      <div className="App">
-        <h1>Phonebook</h1>
+      <div className={s.app}>
+        <h1 className={s.title}>Phonebook</h1>
         <ContactsForm addNewContact={this.addNewContact} />
-        <h2>Contacts</h2>
-        <Contacts contactsArr={filteredContacts} />
+        <h2 className={s.title}>Contacts</h2>
         <FilterField value={this.state.filter} onChange={this.changeFilter} />
+        <Contacts
+          contactsArr={filteredContacts}
+          deleteContact={this.deleteContact}
+        />
       </div>
     );
   }

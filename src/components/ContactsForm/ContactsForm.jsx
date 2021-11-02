@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import s from './ContactsForm.module.css'
 
 class ContactsForm extends Component {
+
 
   state = {
     name: '',
@@ -26,9 +28,9 @@ class ContactsForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.hendlerOnSubmit}>
-        <label> Name
-          <input
+      <form onSubmit={this.hendlerOnSubmit} className={s.form}>
+        <label className={s.inputTitle}> Name
+          <input className={s.inputField}
             type="text"
             value={this.state.name}
             name="name"
@@ -39,8 +41,8 @@ class ContactsForm extends Component {
           />
         </label>
 
-        <label> Number
-          <input
+        <label className={s.inputTitle}> Number
+          <input className={s.inputField}
             type="tel"
             value={this.state.number}
             name="number"
@@ -51,7 +53,7 @@ class ContactsForm extends Component {
           />
         </label>
 
-        <button type='submit'>Add Contact</button>
+        <button className={s.addContactBtn} type='submit'>Add Contact</button>
       </form>
     )
   }
