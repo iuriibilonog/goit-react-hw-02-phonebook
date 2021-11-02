@@ -1,4 +1,5 @@
 import s from './FilterField.module.css';
+import PropTypes from 'prop-types';
 
 const FilterField = ({ value, onChange }) => {
   return (
@@ -6,6 +7,11 @@ const FilterField = ({ value, onChange }) => {
       <input className={s.filterInput} type="text" value={value} onChange={onChange}/>
     </label>
   )
+}
+
+FilterField.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
 export default FilterField;

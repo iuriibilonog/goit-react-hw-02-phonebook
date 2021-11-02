@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import s from './ContactsForm.module.css'
 
+
 class ContactsForm extends Component {
+
+  static propTypes = {
+    addNewContact: PropTypes.func.isRequired
+  }
 
 
   state = {
