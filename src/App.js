@@ -24,9 +24,11 @@ class App extends Component {
       number: number,
     };
 
-    const contactsNames = this.state.contacts.map((item) => item.name);
+    const contactsNames = this.state.contacts.map((item) =>
+      item.name.toLowerCase()
+    );
 
-    contactsNames.includes(contact.name)
+    contactsNames.includes(contact.name.toLowerCase())
       ? alert(`${contact.name} is already in contacts.`)
       : this.setState((prevState) => ({
           contacts: [contact, ...prevState.contacts],
